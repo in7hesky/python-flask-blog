@@ -1,3 +1,8 @@
+{% set nav_items = [
+  {"name": "Home", "link": "info_bp.home"},
+  {"name": "About", "link": "info_bp.about"}
+  ] 
+%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,27 +30,29 @@
 
         <nav class="navbar navbar-expand-md bg-body-tertiary">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">Menu</a>
+              <a class="navbar-brand" href="{{ url_for('info_bp.home') }}">Menu</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" aria-disabled="true">About</a>
-                  </li>
-                </ul>
+                <div class="navbar-nav">
+                  {% for item in nav_items %}
+                    {% if request.endpoint == item["link"] %}
+                      <a href="{{ url_for(item['link']) }}" class="nav-link active" aria-current="page">
+                        {{item["name"]}}
+                      </a>
+                    {% else %}
+                      <a href="{{ url_for(item['link']) }}" class="nav-link">
+                        {{item['name']}}
+                      </a>
+                    {% endif %}
+                  {% endfor %}
+                </div>
               </div>
             </div>
         </nav>
 
-        <main class="main row text-center">
+        <main class="main">
             {% block content %}
             {% endblock %}
         </main>

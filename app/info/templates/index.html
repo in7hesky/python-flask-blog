@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="col visits">Total Visits: {{ data["total_visits"].get() }}</div>
-<div class="col timestamp">{{ data["now"] }}</div>
+<div class="container-fluid row text-center">
+    <div class="col">Total Visits: {{ data["total_visits"].get() }}</div>
+    <div class="col">{{ data["now"] }}</div>
+</div>
 {% endblock %}
 
 {% block scripts %}

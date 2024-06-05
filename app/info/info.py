@@ -9,6 +9,10 @@ def home():
         "total_visits": TotalVisits(),
         "now": datetime.now()
 })
+
+@info_bp.route("/about")
+def about():
+    return render_template("about.html")
     
 class TotalVisits:
     COUNTER = 0
