@@ -1,16 +1,15 @@
-from flask import Flask, render_template
+from flask import render_template
 from datetime import datetime
+from . import info_bp
 
-app = Flask(__name__)
-
-@app.route("/")
+@info_bp.route("/")
 def home():
     return render_template(
         "index.html", data={
-            "total_visits": TotalVisits(),
-            "now": datetime.now()
-        })
-
+        "total_visits": TotalVisits(),
+        "now": datetime.now()
+})
+    
 class TotalVisits:
     COUNTER = 0
     
