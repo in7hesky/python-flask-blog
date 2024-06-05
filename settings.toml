@@ -4,6 +4,8 @@
 flask_debug = true
 extensions = ["flask_debugtoolbar:DebugToolbarExtension"]
 debug_tb_enabled = true
+logging_level = "DEBUG"
 
 [production]
 flask_debug = false
+logging_level = "INFO"
